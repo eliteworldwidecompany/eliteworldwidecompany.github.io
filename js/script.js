@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     getBitcoinPrice();
 });
@@ -43,12 +44,12 @@ document.getElementById('bitcoinForm').addEventListener('submit', async function
     function calcularPrecoDeVenda(precoDeMercado, taxaDeTransacao, riscoDeMercado, formaDePagamento, concorrencia, custosOperacionais) {
     
     // Fatores que podem influenciar o preço de venda
-    var precoFinal = precoDeMercado * (1 + taxaDeTransacao + riscoDeMercado + formaDePagamento + concorrencia + custosOperacionais /100);
+    var precoFinal = precoDeMercado - (precoDeMercado*taxaDeTransacao)-(precoDeMercado*riscoDeMercado)-(precoDeMercado*formaDePagamento)-(precoDeMercado*concorrencia)-(precoDeMercado*custosOperacionais);
     return precoFinal;
     }
     
     var precoDeMercado = bitcoinValue; // Preço atual do Bitcoin
-    var taxaDeTransacao = 0.02; // 2% de taxa de transação 0.156%
+    var taxaDeTransacao = 0.02; // 2% de taxa de transação
     var riscoDeMercado = 0.01; // 1% de risco de mercado
     var formaDePagamento = 0.005; // 0.5% de custo associado à forma de pagamento
     var concorrencia = -0.005; // 0.5% de desconto devido à concorrência
@@ -56,7 +57,7 @@ document.getElementById('bitcoinForm').addEventListener('submit', async function
 
     var precoDeVenda = calcularPrecoDeVenda(precoDeMercado, taxaDeTransacao, riscoDeMercado, formaDePagamento, concorrencia, custosOperacionais);
     
-    console.log("Preço de mercado Bitcoin: "+precoDeMercado.toFixed(8)+"\nPreço de venda do Bitcoin: " + precoDeVenda.toFixed(8)+"\nDiferença de: "+(precoDeMercado.toFixed(8)-precoDeVenda.toFixed(8)));
+    console.log("Preço de mercado Bitcoin: "+precoDeMercado.toFixed(8)+"\nPreço de compra do Bitcoin: " + precoDeVenda.toFixed(8)+"\nDiferença de: "+(precoDeMercado.toFixed(8)-precoDeVenda.toFixed(8)));
 
     document.getElementById('bitcoinResult').innerHTML = `O valor de compra é ${precoDeVenda.toFixed(8)} BTC.`;
     
