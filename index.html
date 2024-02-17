@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon/favicon.png" type="image/png">
+    <title>E2W Company</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            height: 210px;
+        }
+        #carousel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        nav a:hover,
+        nav a:active,
+        nav a:focus {
+            color: #ffcc00;
+        }
+        section {
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .item {
+            width: 30%;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;s
+            padding: 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="carousel" src="img/banner1.png">
+    </header>
+    <nav>
+        <a href="#clothes">Camisetas</a>
+        <a href="#bitcoin">Bitcoin</a>
+    </nav>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Site em Manutenção</h2>
+            <p>Nosso site está passando por manutenção. Pedimos desculpas pelo inconveniente.</p>
+            <button onclick="fecharPopup()">Fechar</button>
+        </div>
+    </div>
+    <script src="js/popup.js"></script>
+
+    <!--Roupas
+    <section id="roupas">
+        <h2>Roupas</h2>
+        <div class="container">
+            <div class="item">
+                <h3>E2W T-shirt</h3>
+                <p>R$ 80,00</p>
+                <button>Comprar</button>
+        </div>
+    </section>
+    -->
+    
+    <!--Serviço -->
+    <section id="bitcoin">
+        <div class="container" style="padding: 20px;">
+            <div class="item" style="width: 60%;">
+                <img src="img/bitcoin.png" width="60px">
+                <h3>Bitcoin</h3>
+                <p id="bitcoinPrice">Loading...</p>
+                <a href="bitcoin.html"><button style="background-color: #ffcc00;cursor: pointer;border-radius: 5px;color: black;">Compre Seu Bitcoin Aqui</button></a>
+            </div>
+        </div>
+    <script>
+        // Função para formatar o valor como moeda
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pr-BR', { style: 'currency', currency: 'BRL' }).format(value);
+        }
+
+        // Função para obter o preço do Bitcoin
+        function getBitcoinPrice() {
+            const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl';
+
+            // Fazendo uma requisição AJAX
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const bitcoinPrice = data.bitcoin.brl;
+                    const formattedPrice = formatCurrency(bitcoinPrice);
+                    document.getElementById('bitcoinPrice').textContent = `Preço Atual do Bitcoin: ${formattedPrice}`;
+                })
+                .catch(error => {
+                    console.error('Erro ao obter o preço do Bitcoin:', error);
+                    document.getElementById('bitcoinPrice').textContent = 'Erro ao obter o preço do Bitcoin';
+                });
+        }
+
+        // Chamando a função ao carregar a página
+        window.addEventListener('load', getBitcoinPrice);
+
+        // Atualizando o preço a cada 5 minutos (300000 milissegundos)
+        setInterval(getBitcoinPrice, 300000);
+    </script>
+    </section>
+
+    <footer>
+        © 2024 Elite Worldwide Company
+        <br>
+        <a href="https://www.instagram.com/eliteworldwidecompany/">Instagram</a>
+    </footer>
+</body>
+</html>
