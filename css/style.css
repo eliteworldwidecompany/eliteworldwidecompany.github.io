@@ -144,3 +144,17 @@ footer {
     font-size: 15px;
     color: #007bff;
 }
+.switch-coin {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
