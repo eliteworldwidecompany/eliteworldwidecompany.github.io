@@ -14,6 +14,14 @@
             <nav class="transparent-nav">
                 <a href="/index.html" class="nav-link">Página Inicial</a>
                 <a href="/about.html" class="nav-link">Sobre</a>
+                <div class="switch-coin">
+        	        <label for="coin"></label>
+        	        <select name="coin" id="coin">
+        	            <option value="real">🇧🇷 BRL</option>
+        	            <option value="dollar">🇺🇸 USD</option>
+                        <option value="peso-uruguayo">🇺🇾 UYU</option>
+        	        </select>
+	            </div>
             </nav>
         </header>
         <div class="bitcoin-info">
@@ -69,12 +77,13 @@
             <div id="infoPopup" class="popup">
                 <div class="popup-content">
                     <span class="close" onclick="fecharPopup()">&times;</span>
-                    <h2>Taxas Explicadas</h2>
+                    <h2>Sobre as taxas</h2>
                     <ul align="left">
                         <li>2% de taxa de transação</li>
                         <li>1% de risco de mercado</li>
                         <li>1% de custos operacionais</li>
                     </ul>
+                    <p>Totalizando 4% no valor da compra</p>
                 </div>
             </div>
             <script>
