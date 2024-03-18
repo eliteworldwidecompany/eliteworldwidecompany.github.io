@@ -44,6 +44,30 @@
         nav a:focus {
             color: #ffcc00;
         }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000;
+            min-width: 160px;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: #333;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
         section {
             padding: 20px;
         }
@@ -59,16 +83,26 @@
             padding: 10px;
             text-align: center;
         }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
         footer {
             background-color: #000;
             color: #fff;
-            text-align: center;s
-            padding: 0;
+            text-align: center;
+            padding: 10px;
             position: fixed;
             bottom: 0;
             width: 100%;
         }
-        
         .popup {
             display: none;
             position: fixed;
@@ -102,8 +136,15 @@
         <img id="carousel" src="img/banner1.png">
     </header>
     <nav>
-        <a href="#clothes">Camisetas</a>
-        <a href="#bitcoin">Bitcoin</a>
+        <div class="dropdown">
+            <a href="javascript:void(0)">Roupas</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="atualizarCampoPesquisa('Camiseta')">Camiseta</a>
+                <a href="#" onclick="atualizarCampoPesquisa('Moletom')">Moletom</a>
+                <a href="#" onclick="atualizarCampoPesquisa('Calça')">Calça</a>
+            </div>
+        </div>
+        <a href="bitcoin.html">Bitcoin</a>
     </nav>
 
     <div id="popup" class="popup">
@@ -115,17 +156,88 @@
     </div>
     <script src="js/popup.js"></script>
 
-    <!--Roupas
     <section id="roupas">
-        <h2>Roupas</h2>
-        <div class="container">
-            <div class="item">
-                <h3>E2W T-shirt</h3>
-                <p>R$ 80,00</p>
-                <button>Comprar</button>
+        <div class="search-bar">
+            <input type="text" id="searchTerm1" placeholder="Pesquisar...">
+            <button onclick="pesquisar(1)">Pesquisar</button>
+        </div>
+        <div class='container' id="output1">    
         </div>
     </section>
-    -->
+
+    <section id="outros-produtos">
+        <div class="search-bar">
+            <input type="text" id="searchTerm2" value="Camiseta" hidden>
+        </div>
+        <div class='container' id="output2">    
+        </div>
+    </section>
+    
+    <script>
+    
+    function pesquisar(secao) {
+        let searchTerm;
+        if (secao === 1) {
+            searchTerm = document.getElementById("searchTerm1").value;
+            limparProdutos("output1");
+            limparProdutos("output2");
+            fetchProdutos(searchTerm, "output1");
+        } else if (secao === 2) {
+            searchTerm = document.getElementById("searchTerm2").value;
+            limparProdutos("output1");
+            limparProdutos("output2");
+            fetchProdutos(searchTerm, "output2");
+        }
+    }
+
+    function limparProdutos(outputId) {
+        const outputDiv = document.getElementById(outputId);
+        outputDiv.innerHTML = '';
+    }
+
+    function fetchProdutos(searchTerm, outputId) {
+        const url = `https://api.mercadolibre.com/sites/MLB/search?q=${searchTerm}&seller_id=306601213&limit=3`;
+
+        const outputDiv = document.getElementById(outputId);
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao requisitar o JSON');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const results = data.results;
+                if (results.length === 0) {
+                    const noResultsDiv = document.createElement('div');
+                    noResultsDiv.textContent = 'Não foi encontrado esse produto';
+                    outputDiv.appendChild(noResultsDiv);
+                } else {
+                    results.forEach(result => {
+                        const resultDiv = document.createElement('div');
+                        resultDiv.classList.add('item');
+                        const prodDiv = "<img src='"+result.thumbnail+"'><h3>"+result.title+"</h3><p> R$ "+result.price+"</p><button onclick=\"window.location.href='https://www.seusite.com'\">Comprar</button>";
+                        resultDiv.innerHTML = prodDiv;
+                        outputDiv.appendChild(resultDiv);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao fazer a requisição:', error);
+            });
+    }
+    window.addEventListener('load', () => {
+        pesquisar(1); 
+        pesquisar(2); 
+    });
+
+    function atualizarCampoPesquisa(valor) {
+        document.getElementById("searchTerm1").value = valor;
+        pesquisar(1);
+    }
+    
+    </script>
     
     <!--Serviço -->
     <section id="bitcoin">
