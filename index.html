@@ -217,7 +217,7 @@
                     results.forEach(result => {
                         const resultDiv = document.createElement('div');
                         resultDiv.classList.add('item');
-                        const prodDiv = "<img src='"+result.thumbnail+"'><h3>"+result.title+"</h3><p> R$ "+result.price+"</p><button onclick=\"window.location.href='https://www.seusite.com'\">Comprar</button>";
+                        const prodDiv = "<img src='"+result.thumbnail+"'><h3>"+result.title+"</h3><p> R$ "+result.price+"</p><button onclick=\"window.location.href='"+result.permalink+"'\">Comprar</button>";
                         resultDiv.innerHTML = prodDiv;
                         outputDiv.appendChild(resultDiv);
                     });
