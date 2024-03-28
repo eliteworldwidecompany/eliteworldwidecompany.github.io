@@ -1,12 +1,12 @@
-function abrirPopup() {
+function openPopup() {
     document.getElementById('popup').style.display = 'flex';
 }
 
-function fecharPopup() {
+function closePopup() {
     document.getElementById('popup').style.display = 'none';
 }
 
 
 window.onload = function() {
-    abrirPopup();
+    openPopup();
 };
