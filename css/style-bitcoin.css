@@ -1,0 +1,160 @@
+body {
+    background: linear-gradient(to bottom right, #1c1c1c, #444444);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 120%;
+}
+
+body::before {
+    content: "";
+    background-image: url('../img/background.jpg');
+    background-position: center left;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.invisible-header {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: transparent; 
+    z-index: 999; 
+    padding-left: 20px; 
+    display: flex;
+    align-items: center;
+}
+
+.transparent-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    width: 45px;
+    height: auto;
+    opacity: 0.7;
+}
+
+.content {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+body {
+    background: linear-gradient(to bottom right, #1c1c1c, #444444);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+footer {
+    background-color: #3330;
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-left: -20px;
+}
+.bitcoin-price {
+    font-size: 24px;
+    color: #ffcc00;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+
+}
+.bitcoin-info {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+    max-width: 400px;
+    margin-top: 80px;
+}
+.contact-button {
+    background-color: #25d366;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+.contact-button:hover {
+    color: black;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    background-color: #007bff;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+    color: #1c1c1c;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+.info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: #007bff;
+}
+.switch-coin {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}

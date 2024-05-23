@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="icon/favicon.png" type="image/png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <title>E2W | Bitcoin</title>
+        <link rel="stylesheet" href="css/style-bitcoin.css"></link>
+    </head>
+    <body>
+        <header class="invisible-header">
+            <img src="icon/icon.png" alt="Logo" class="logo">
+            <nav class="transparent-nav">
+                <a href="/index.html" class="nav-link">Página Inicial</a>
+                <a href="https://eliteworldwidecompany.blogspot.com/2024/04/eu-separei-algumas-perguntas-frequentes.html" class="nav-link">Sobre</a>
+                <div class="switch-coin">
+        	        <label for="coins"></label>
+        	        <select name="coins" id="coins">
+        	            <option value="real">🇧🇷 BRL</option>
+        	            <option value="dollar">🇺🇸 USD</option>
+                        <option value="peso-uruguayo">🇺🇾 UYU</option>
+        	        </select>
+	            </div>
+            </nav>
+        </header>
+        <div class="bitcoin-info">
+            <img src="img/bitcoin.png" width="80px">
+            <h1>Bitcoin</h1>
+            <p class="bitcoin-price">Carregando...</p>
+
+            <script src="js/bitcoin.js"></script>
+
+            <p>Insira um valor em reais e clique em "Converter" para calcular o equivalente em Bitcoin para compra.</p>
+
+            <form id="bitcoinForm">
+                <label for="coin">Valor em real:</label>
+                <input type="number" id="coin" name="coin" step="0.01" required>
+    
+                <br><br>
+                <button type="submit">Converter</button>
+            </form>
+            <br>
+            <b><p id="bitcoinResult"></p></b>
+            <button id="infoBtn" class="info-btn"><i class="fas fa-info-circle"></i></button>
+            <!-- Pop-up de Informações -->
+            <div id="infoPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="fecharPopup()">&times;</span>
+                    <h2>Sobre as taxas</h2>
+                    <ul align="left">
+                        <li>2% de taxa de transação</li>
+                        <li>1% de risco de mercado</li>
+                        <li>1% de custos operacionais</li>
+                    </ul>
+                    <p>Totalizando 4% no valor da compra</p>
+                </div>
+            </div>
+            <script>
+                function abrirPopup() {
+                    document.getElementById("infoPopup").style.display = "block";
+                }
+                function fecharPopup() {
+                    document.getElementById("infoPopup").style.display = "none";
+                }
+                document.getElementById("infoBtn").addEventListener("click", abrirPopup);
+            </script>
+            <br>
+            <p id="contact-wp"></p>
+            <p id="contact-telegram"></p>
+            <script src="js/script.js"></script>
+
+        </div>
+        <footer>
+            © 2024 Elite Worldwide Company
+	    <br>
+	    <a href="https://www.instagram.com/eliteworldwidecompany/" target="_blank"><img src="icon/instagram.png" height="20px"> </a>
+            <a href="https://wa.me/5551997806982" target="_blank"><img src="icon/whatsapp.png" height="20px"> </a>
+        </footer>
+    </body>
+</html>

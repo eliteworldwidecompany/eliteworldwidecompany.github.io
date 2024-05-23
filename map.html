@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon/favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/map.css">
+    <title>Bitcoin Map | E2W</title>
+
+</head>
+<body>
+    <nav>
+        <img src="icon/favicon.png" width="35px" style="float: left;">
+        <div class="search-bar">
+            <select id="category" style="width: 100px;">
+                <option value="all">Todas</option>
+                <option value="food">Alimentos e Bebidas</option>
+                <option value="clothing">Vestuário e Moda</option>
+                <option value="health">Saúde e Bem-estar</option>
+                <option value="it">Tecnologia</option>
+                <option value="others">Outros</option>
+            </select>
+            <input type="text" id="locate-service" value="">
+            <button onclick=""><img src="icon/search.png" width="20px"></button>
+        </div>
+    </nav>
+    
+    <div id="map">
+        <div class="info" id="info"></div>
+    </div>
+
+    <footer>
+        <nav>
+            <button id="arrow-left">◀</button>
+            <select id="options" style="width: 25%;">
+            </select>
+            <button id="arrow-right">▶</button>
+        </nav>
+    </footer>
+    <script>
+        const services = 'https://eliteworldwidecompany.pythonanywhere.com/services';
+        const baseUrl = "https://www.openstreetmap.org/export/embed.html?";
+        let urlParams = "layer=mapnik";
+        let indexLen = 0;
+
+        async function fetchAndDisplayMap() {
+          try {
+            const response = await fetch(services);
+            const markers = await response.json();
+            localStorage.setItem('data',JSON.stringify(markers));
+          } catch (error) {
+            console.error('Erro ao carregar pontos:', error);
+
+          }
+          const mapIframe = document.createElement('iframe');
+          mapIframe.classList.add('map');
+          mapIframe.id = 'mapIframe';
+          mapIframe.src = baseUrl + urlParams;
+          mapIframe.width = "100%";
+          mapIframe.height = window.innerHeight;
+          document.getElementById('map').appendChild(mapIframe);
+          loadDataMarker(0);
+        }
+
+        async function loadDataMarker(index){
+            var localStorageData = await localStorage.getItem('data');
+            var data = JSON.parse(localStorageData);
+            indexLen = data.length - 1;
+
+            var select = document.getElementById('options');
+
+            for (var key in data) {
+            if (data.hasOwnProperty(key) && options.options.length < indexLen + 1) {
+                var option = document.createElement('option');
+                option.style = 'text-align: center;';
+                option.value = key;
+                option.textContent = data[key].name;
+                select.appendChild(option);
+            }
+            }
+            updateMarker(String(data[index].lat)+'%2C'+ String(data[index].long));
+            let info = document.getElementById('info');
+            info.innerHTML = data[index].name + "<br><a href='"+data[index].link+"' target='_blank'>"+data[index].link+"</a><br>";
+            info.append(desc);
+        }
+
+        function updateMarker (position) {
+            let pos = String(baseUrl+urlParams+'&marker='+position);
+            document.getElementById('mapIframe').src = pos;
+        }
+
+        const options = document.getElementById('options');
+        const arrowRight = document.getElementById('arrow-right');
+        const arrowLeft = document.getElementById('arrow-left');
+        let selectedIndex = 0;
+
+        arrowLeft.addEventListener('click', function() {
+        if (selectedIndex > 0) {
+            selectedIndex--;
+            options.selectedIndex = selectedIndex;
+            loadDataMarker(selectedIndex);
+        }else{
+            selectedIndex = indexLen;
+            options.selectedIndex = indexLen;
+            loadDataMarker(selectedIndex);
+        }
+        });
+
+        arrowRight.addEventListener('click', function() {
+        if (selectedIndex < indexLen) {
+            selectedIndex++;
+            options.selectedIndex = selectedIndex;
+            loadDataMarker(selectedIndex);
+        }else{
+            selectedIndex = 0;
+            options.selectedIndex = 0;
+            loadDataMarker(selectedIndex);
+        }
+        });
+
+        options.addEventListener('change', function() {
+            selectedIndex = options.selectedIndex;
+            loadDataMarker(selectedIndex);
+        });
+
+        window.onload = function() {
+            fetchAndDisplayMap();
+            loadDataMarker(1);
+        }
+    </script>
+</body>
+</html>
