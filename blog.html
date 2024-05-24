@@ -34,7 +34,7 @@
             const postsContainer = document.getElementById('posts-container');
             postsContainer.innerHTML = '';
       
-            data[0].forEach(post => {
+            data.forEach(post => {
               const card = document.createElement('a');
               card.classList.add('card');
               card.href = post.link;
