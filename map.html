@@ -39,7 +39,7 @@
     </footer>
     <script>
         const services = 'https://eliteworldwidecompany.pythonanywhere.com/services';
-        const baseUrl = "https://eliteworldwidecompany.pythonanywhere.com/map";
+        const baseUrl =  'https://eliteworldwidecompany.pythonanywhere.com/map';
         let urlParams = "layer=mapnik";
         let indexLen = 0;
 
@@ -59,7 +59,6 @@
           mapIframe.width = "100%";
           mapIframe.height = window.innerHeight;
           document.getElementById('map').appendChild(mapIframe);
-          loadDataMarker(0);
         }
 
         async function loadDataMarker(index){
