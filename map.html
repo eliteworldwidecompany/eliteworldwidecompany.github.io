@@ -55,7 +55,7 @@
           const mapIframe = document.createElement('iframe');
           mapIframe.classList.add('map');
           mapIframe.id = 'mapIframe';
-          mapIframe.src = baseUrl;
+          mapIframe.src = baseUrl+urlParams;
           mapIframe.width = "100%";
           mapIframe.height = window.innerHeight;
           document.getElementById('map').appendChild(mapIframe);
@@ -77,14 +77,14 @@
                 select.appendChild(option);
             }
             }
-            updateMarker(String(data[index].lat)+'%2C'+ String(data[index].long));
+            updateMarker(String(data[index].lat), String(data[index].long));
             let info = document.getElementById('info');
             info.innerHTML = data[index].name + "<br><a href='"+data[index].link+"' target='_blank'>"+data[index].link+"</a><br>";
             info.append(desc);
         }
 
-        function updateMarker (position) {
-            let pos = String(baseUrl+urlParams+'&marker='+position);
+        function updateMarker (lat, long) {
+            let pos = String(baseUrl+urlParams+'&lat='+lat+'&long='+long);
             document.getElementById('mapIframe').src = pos;
         }
 
