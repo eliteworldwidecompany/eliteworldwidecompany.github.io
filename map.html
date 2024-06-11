@@ -126,22 +126,6 @@
             fetchAndDisplayMap();
             loadDataMarker(1);
         }
-        document.addEventListener('DOMContentLoaded', function () {
-        const text = "This is an example of text with a typing effect!";
-        const element = document.getElementById('typing');
-        let index = 0;
-        const speed = 100; // Speed in milliseconds
-        
-        function type() {
-        if (index < text.length) {
-              element.textContent += text.charAt(index);
-              index++;
-              setTimeout(type, speed);
-            }
-          }
-        
-          type();
-    });
     </script>
 </body>
 </html>
