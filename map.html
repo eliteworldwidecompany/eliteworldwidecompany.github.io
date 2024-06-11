@@ -80,7 +80,7 @@
             updateMarker(String(data[index].lat), String(data[index].long), String(data[index].state));
             let info = document.getElementById('info');
             info.innerHTML = data[index].name + "<br><a href='"+data[index].link+"' target='_blank'>"+data[index].link+"</a><br>";
-            info.append(desc);
+            info.append(data[index].desc);
         }
 
         function updateMarker (lat, long, state) {
@@ -126,6 +126,22 @@
             fetchAndDisplayMap();
             loadDataMarker(1);
         }
+        document.addEventListener('DOMContentLoaded', function () {
+        const text = "This is an example of text with a typing effect!";
+        const element = document.getElementById('typing');
+        let index = 0;
+        const speed = 100; // Speed in milliseconds
+        
+        function type() {
+        if (index < text.length) {
+              element.textContent += text.charAt(index);
+              index++;
+              setTimeout(type, speed);
+            }
+          }
+        
+          type();
+    });
     </script>
 </body>
 </html>
