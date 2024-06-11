@@ -79,8 +79,7 @@
             }
             updateMarker(String(data[index].lat), String(data[index].long), String(data[index].state));
             let info = document.getElementById('info');
-            info.innerHTML = data[index].name + "<br><a href='"+data[index].link+"' target='_blank'>"+data[index].link+"</a><br>";
-            info.append(data[index].desc);
+            info.innerHTML = data[index].name + "<br><a href='"+data[index].link+"' target='_blank'>"+data[index].link+"</a><br><br><p>"+data[index].desc+"</p>";
         }
 
         function updateMarker (lat, long, state) {
