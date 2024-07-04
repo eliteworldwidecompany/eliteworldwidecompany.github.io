@@ -148,6 +148,7 @@
     }
   
     .card {
+      display: flex;
       width: 40%;
       margin-bottom: 20px;
       padding: 10px;
@@ -160,8 +161,10 @@
     }
   
     .card img {
+      display: flex;
+      padding-right: 5px;
       width: 100%;
-      height: auto;
+      height: -webkit-fill-available;
       border-radius: 10px;
     }
     .card-link {
