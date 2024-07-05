@@ -1,0 +1,10 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+        "namespace": "app.eliteworldwidecompany",
+        "package_name": "app.eliteworldwidecompany",
+        "sha256_cert_fingerprints": [
+            "A92FC01F9D8E8FC6007202C44B9F7044CB8F817F62B65F33C0D4475030270D1C"
+        ]
+    }
+}]
