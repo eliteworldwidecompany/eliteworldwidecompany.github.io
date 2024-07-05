@@ -50,7 +50,7 @@ document.getElementById('bitcoinForm').addEventListener('submit', async function
     
     var precoDeMercado = bitcoinValue; // Preço atual do Bitcoin
     var taxaDeTransacao = 0.02; // 2% de taxa de transação
-    var riscoDeMercado = 0.01; // 1% de risco de mercado
+    var riscoDeMercado = 0.02; // 2% de risco de mercado
     var formaDePagamento = 0.005; // 0.5% de custo associado à forma de pagamento
     var concorrencia = -0.005; // 0.5% de desconto devido à concorrência
     var custosOperacionais = 0.01; // 1% de custos operacionais
