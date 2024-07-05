@@ -1,15 +1,19 @@
 {
-  "name": "Elite Worldwide",
-  "short_name": "E2W",
-  "start_url": "/map.html",
-  "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Elite Worldwide",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "eliteworldwide",
+  "start_url": "/map.html",
+  "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "icon/icon.png",
-      "sizes": "150x150",
-      "type": "image/png"
+      "src": "icon/favicon.png",
+      "type": "image/jpeg",
+      "sizes": "150x150"
     }
-  ]
+  ],
+  "id": "e2w"
 }
