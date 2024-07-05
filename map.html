@@ -87,6 +87,11 @@
             document.getElementById('mapIframe').src = pos;
         }
 
+	function sleep(ms) {
+	    return new Promise(resolve => setTimeout(resolve, ms));
+            loadDataMarker(0);
+	}
+
         const options = document.getElementById('options');
         const arrowRight = document.getElementById('arrow-right');
         const arrowLeft = document.getElementById('arrow-left');
@@ -121,9 +126,10 @@
             loadDataMarker(selectedIndex);
         });
 
-        window.onload = function() {
-            loadDataMarker(0);
-            fetchAndDisplayMap();
+        window.onload = async function() {
+            await fetchAndDisplayMap();
+	    await sleep(9000);
+	    loadDataMarker(0);
         }
     </script>
 </body>
