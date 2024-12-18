@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌴 CaipiNight Hostel Bohemian</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #ff5722;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+    }
+    .language-selector {
+      margin-top: 10px;
+    }
+    .language-selector select {
+      background-color: #fff;
+      color: #ff5722;
+      border: 2px solid #ff5722;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .language-selector select:hover {
+      background-color: #ff7043;
+      border-color: #ff7043;
+      color: white;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .form-container {
+      flex: 1;
+      max-width: 500px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .image-container {
+      flex: 1;
+      text-align: center;
+    }
+    .image-container img {
+      width: 100%;
+      height: auto;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #ff5722;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #e64a19;
+    }
+    .offer {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #777;
+    }
+    footer {
+      background-color: #ff5722;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+    }
+    footer a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Hostel Bohemian</h1>
+    <div class="language-selector">
+      <select id="language-select">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="pt">Português</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="form-container">
+      <h2 id="welcome-heading">Noche de Caipi en el Hostel</h2>
+      <p id="welcome-subheading">¡Prepárate para una noche llena de sabores tropicales y buena vibra! 🍹✨.</p>
+
+      <form action="https://eliteworldwidecompany.pythonanywhere.com/" method="POST">
+        <label for="name" id="name-label">Nombre:</label><br>
+        <input type="name" id="name" name="name" placeholder="Nombre" required><br><br>
+        <label for="phone" id="phone-label">Introduce tu número de celular:</label><br>
+        <input type="tel" id="phone" name="phone" placeholder="Número de celular" required>
+
+        <input type="hidden" name="id" value="-4727775663">
+
+        <button type="submit" id="submit-button">Realizar reserva</button>
+      </form>
+
+      <div class="offer">
+        <p id="offer-text">¡Al realizar tu reserva, obtienes un vale de caipirinha gratis!</p>
+      </div>
+    </div>
+    
+    <div class="image-container">
+      <img src="https://via.placeholder.com/800x500" alt="Hostel Bohemian">
+    </div>
+  </div>
+
+  <footer>
+    <p>Síguenos en nuestras redes sociales:</p>
+    <a href="https://www.instagram.com/hostelbohemian" target="_blank">Instagram</a> |
+    <a href="https://www.facebook.com/hostelbohemian" target="_blank">Facebook</a>
+  </footer>
+
+  <script>
+    const translations = {
+      es: {
+        title: "Hostel Bohemian",
+        heading: "Noche de Caipi en el Hostel",
+        subheading: "¡Prepárate para una noche llena de sabores tropicales y buena vibra! 🍹✨",
+        buttonText: "Realizar reserva",
+        nameLabel: "Escriba su nombre",
+        phoneLabel: "Introduce tu número de celular:",
+        offerText: "¡Al realizar tu reserva obtienes un vale de caipirinha gratis!"
+      },
+      en: {
+        title: "Hostel Bohemian",
+        heading: "CaipiNight at the Hostel",
+        subheading: "Get ready for a night full of tropical flavors and good vibes! 🍹✨",
+        buttonText: "Make Reservation",
+        nameLabel: "Type your name",
+        phoneLabel: "Enter your phone number:",
+        offerText: "By making your reservation you get a free caipirinha voucher!"
+      },
+      pt: {
+        title: "Hostel Bohemian",
+        heading: "CaipiNight no hostel",
+        subheading: "Prepare-se para uma noite cheia de sabores tropicais e boas vibrações! 🍹✨",
+        buttonText: "Fazer reserva",
+        nameLabel: "Digite seu nome",
+        phoneLabel: "Digite seu número de celular:",
+        offerText: "Ao fazer sua reserva você ganha um vale caipirinha grátis!"
+      }
+    };
+
+    document.getElementById('language-select').addEventListener('change', function() {
+      const language = this.value;
+      const translation = translations[language];
+      document.getElementById('title').innerText = translation.title;
+      document.getElementById('welcome-heading').innerText = translation.heading;
+      document.getElementById('welcome-subheading').innerText = translation.subheading;
+      document.getElementById('name-label').innerText = translation.nameLabel;
+      document.getElementById('phone-label').innerText = translation.phoneLabel;
+      document.getElementById('submit-button').innerText = translation.buttonText;
+      document.getElementById('offer-text').innerText = translation.offerText;
+    });
+  </script>
+</body>
+</html>
